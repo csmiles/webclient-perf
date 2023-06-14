@@ -1,27 +1,27 @@
-package csmiles.webclientperf;
+package csmiles.webclientperf.client;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/spacex")
-public class SpaceXController {
+@RequestMapping("client")
+public class ClientController {
 
     private final WebClient webClient;
 
-    public SpaceXController(WebClient webClient) {
+    public ClientController(WebClient webClient) {
         this.webClient = webClient;
     }
 
-    @GetMapping("launches")
-    public Flux<Launch> getLaunches() {
+    @GetMapping("retrieveSuccess")
+    public Mono<String> retrieveSuccess() {
         return webClient.get()
-                .uri("https://api.spacexdata.com/v5/launches")
+                .uri("http://localhost:8080/server/success")
                 .retrieve()
-                .bodyToFlux(Launch.class);
+                .bodyToMono(String.class);
     }
 
 }

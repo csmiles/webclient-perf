@@ -1,4 +1,4 @@
-package csmiles.webclientperf;
+package csmiles.webclientperf.client;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
