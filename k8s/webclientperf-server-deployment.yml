@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+  labels:
+    name: server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: server
+  template:
+    metadata:
+      labels:
+        name: server
+    spec:
+      containers:
+        - name: server
+          image: csmiles/webclientperf:server
+          ports:
+            - containerPort: 8080
