@@ -33,4 +33,22 @@ public class ClientController {
                 .bodyToMono(String.class);
     }
 
+    @GetMapping("unpooled")
+    public Mono<String> unpooled() {
+        var webClient = WebClientFactory.unpooled(serverScheme.toString());
+        return webClient.get()
+                .uri(serverScheme + "/server/success")
+                .retrieve()
+                .bodyToMono(String.class);
+    }
+
+    @GetMapping("pooled")
+    public Mono<String> pooled() {
+        var webClient = WebClientFactory.pooled(serverScheme.toString());
+        return webClient.get()
+                .uri(serverScheme + "/server/success")
+                .retrieve()
+                .bodyToMono(String.class);
+    }
+
 }
