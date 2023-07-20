@@ -19,3 +19,4 @@ spec:
           image: csmiles/webclientperf:client
           ports:
             - containerPort: 8180
+          imagePullPolicy: Always
